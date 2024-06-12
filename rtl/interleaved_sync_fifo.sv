@@ -26,7 +26,7 @@
 // module      : interleaved_sync_fifo
 // description : This module is 1t synchronous fifo realized by interleaving 2t synchronous fifo
 //               for FPGA implementation, and don't use distributed RAM, but BRAM
-module interleaved_sync_fifo
+module jh_external_interleaved_sync_fifo
   #(parameter
     /*
      You can specify the following parameters.

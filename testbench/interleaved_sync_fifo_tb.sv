@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 // module      : interleaved_sync_fifo_tb
 // description :
-module interleaved_sync_fifo_tb();
+module jh_external_interleaved_sync_fifo_tb();
    localparam DATA_WIDTH    = 8;
    localparam FIFO_DEPTH    = 16;
    localparam CLK_FREQ      = 100_000_000;
@@ -51,7 +51,7 @@ module interleaved_sync_fifo_tb();
 
    //-----------------------------------------------------------------------------
    // DUT connection
-   interleaved_sync_fifo #(DATA_WIDTH, FIFO_DEPTH) dut(.in_data(in_data),
+   jh_external_interleaved_sync_fifo #(DATA_WIDTH, FIFO_DEPTH) dut(.in_data(in_data),
                                                        .in_valid(in_valid),
                                                        .in_ready(in_ready),
                                                        .out_data(out_data),

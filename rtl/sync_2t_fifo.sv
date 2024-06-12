@@ -22,7 +22,7 @@
  SOFTWARE.
  */
 
-module sync_2t_fifo
+module jh_external_sync_2t_fifo
   #(parameter
     /*
      You can specify the following parameters.

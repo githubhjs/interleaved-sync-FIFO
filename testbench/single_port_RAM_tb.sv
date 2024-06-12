@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 // module      : single_port_RAM_tb
 // description :
-module single_port_RAM_tb();
+module jh_external_single_port_RAM_tb();
    localparam DATA_WIDTH    = 8;
    localparam RAM_DEPTH     = 256;
    localparam CLK_FREQ      = 100_000_000;
@@ -51,7 +51,7 @@ module single_port_RAM_tb();
 
    //-----------------------------------------------------------------------------
    // DUT
-   single_port_RAM #(DATA_WIDTH, RAM_DEPTH) dut(.din(din),
+   jh_external_single_port_RAM #(DATA_WIDTH, RAM_DEPTH) dut(.din(din),
                                                 .addr(addr),
                                                 .dout(dout),
                                                 .wr_en(wr_en),

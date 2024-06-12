@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 // module      : reg_fifo
 // description :
-module reg_fifo
+module jh_external_reg_fifo
   #(parameter
     /*
      You can specify the following parameters.

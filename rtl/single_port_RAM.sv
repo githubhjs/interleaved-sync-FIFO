@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 // module      : single_port_RAM
 // description :
-module single_port_RAM
+module jh_external_single_port_RAM
   #(parameter
     /*
      You can specify the following two parameters.
