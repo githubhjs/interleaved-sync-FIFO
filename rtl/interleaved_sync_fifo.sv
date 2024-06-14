@@ -115,20 +115,20 @@ module jh_external_interleaved_sync_fifo
       in_exec  = in_valid  & in_ready;
       out_exec = out_valid & out_ready;
 
-      fifo0_in_exec      = in_valid & (in_sel == 0) & !fifo0_in_valid_r;
+      fifo0_in_exec      = in_exec & (in_sel == 0) & !fifo0_in_valid_r;
       fifo0_in_exec_done = fifo0_in_valid_r & fifo0_in_ready;
-      fifo1_in_exec      = in_valid & (in_sel == 1) & !fifo1_in_valid_r;
+      fifo1_in_exec      = in_exec & (in_sel == 1) & !fifo1_in_valid_r;
       fifo1_in_exec_done = fifo1_in_valid_r & fifo1_in_ready;
 
       fifo0_prefetch_exec = fifo0_out_valid & !fifo0_prefetch_valid_r;
       fifo0_out_ready     = !fifo0_prefetch_valid_r;
-      fifo0_out_exec      = out_ready & (out_sel == 0) & fifo0_prefetch_valid_r;
+      fifo0_out_exec      = out_exec & (out_sel == 0) & fifo0_prefetch_valid_r;
       fifo1_prefetch_exec = fifo1_out_valid & !fifo1_prefetch_valid_r;
       fifo1_out_ready     = !fifo1_prefetch_valid_r;
-      fifo1_out_exec      = out_ready & (out_sel == 1) & fifo1_prefetch_valid_r;
+      fifo1_out_exec      = out_exec & (out_sel == 1) & fifo1_prefetch_valid_r;
    end
 
-   always_ff @(posedge clk) begin
+   always_ff @(posedge clk or negedge rstn) begin
      if(!rstn | clear) begin
         count_r <= 0;
 
