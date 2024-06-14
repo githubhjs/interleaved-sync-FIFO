@@ -79,7 +79,7 @@ module jh_external_sync_2t_fifo
                                                              .clk(clk),
                                                              .rstn(rstn));
 
-   always_comb begin
+   always_comb begin : comb_flag
       in_ready       = (fifo_count_r < FIFO_DEPTH) ? 1 : 0;
       count          = fifo_count_r;
       in_exec        = in_valid  & in_ready;

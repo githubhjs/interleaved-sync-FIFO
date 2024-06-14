@@ -106,7 +106,7 @@ module jh_external_interleaved_sync_fifo
                                                      .clk(clk),
                                                      .rstn(rstn));
 
-   always_comb begin
+   always_comb begin : comb_flag
       in_ready  = (count_r < FIFO_DEPTH) ? 1 : 0;
       out_valid = out_sel ? fifo1_prefetch_valid_r : fifo0_prefetch_valid_r;
       out_data  = out_sel ? fifo1_prefetch_data_r  : fifo0_prefetch_data_r;

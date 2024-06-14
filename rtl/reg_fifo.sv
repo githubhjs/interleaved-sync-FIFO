@@ -53,7 +53,7 @@ module jh_external_reg_fifo
    logic [LB_FIFO_DEPTH:0]                count_r;
    logic                                  in_exec, out_exec;
 
-   always_comb begin
+   always_comb begin : comb_flag
       in_ready  = (count_r < FIFO_DEPTH) ? 1 : 0;
       out_valid = (0 < count_r) ? 1 : 0;
       out_data  = dist_ram[raddr_r];
