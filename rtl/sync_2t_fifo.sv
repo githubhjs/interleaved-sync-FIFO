@@ -90,7 +90,14 @@ module jh_external_sync_2t_fifo
    end
 
    always_ff @(posedge clk or negedge rstn) begin : seq_flag
-     if(!rstn | clear) begin
+     if(!rstn) begin
+        fifo_count_r             <= 0;
+        waddr_r                  <= 0;
+        raddr_r                  <= 0;
+        mem_count_r              <= 0;
+        prefetch_fifo_in_valid_q <= '{default:0};
+     end else
+     if(clear) begin
         fifo_count_r             <= 0;
         waddr_r                  <= 0;
         raddr_r                  <= 0;

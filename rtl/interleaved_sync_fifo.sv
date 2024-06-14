@@ -128,8 +128,24 @@ module jh_external_interleaved_sync_fifo
       fifo1_out_exec      = out_exec & (out_sel == 1) & fifo1_prefetch_valid_r;
    end
 
-   always_ff @(posedge clk or negedge rstn) begin
-     if(!rstn | clear) begin
+   always_ff @(posedge clk or negedge rstn) begin : seq_flag
+     if(!rstn) begin
+        count_r <= 0;
+
+        fifo0_in_data_r  <= 0;
+        fifo1_in_data_r  <= 0;
+        fifo0_in_valid_r <= 0;
+        fifo1_in_valid_r <= 0;
+
+        fifo0_prefetch_data_r  <= 0;
+        fifo1_prefetch_data_r  <= 0;
+        fifo0_prefetch_valid_r <= 0;
+        fifo1_prefetch_valid_r <= 0;
+
+        in_sel  <= 0;
+        out_sel <= 0;
+     end else
+     if(clear) begin
         count_r <= 0;
 
         fifo0_in_data_r  <= 0;

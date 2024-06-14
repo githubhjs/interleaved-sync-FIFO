@@ -63,7 +63,12 @@ module jh_external_reg_fifo
    end
 
    always_ff @(posedge clk or negedge rstn) begin : seq_flag
-     if(!rstn | clear) begin
+     if(!rstn) begin
+        waddr_r <= 0;
+        raddr_r <= 0;
+        count_r <= 0;
+     end else
+     if(clear) begin
         waddr_r <= 0;
         raddr_r <= 0;
         count_r <= 0;
