@@ -49,7 +49,7 @@ module jh_external_single_port_RAM
    logic [DATA_WIDTH-1:0]           dout_r;
    logic                            wr_en_r;
 
-   always_ff @(posedge clk or negedge rstn) begin : seq_flag
+   always_ff @(posedge clk) begin : seq_flag
       din_r   <= din;
       addr_r  <= addr;
       dout_r  <= ram[addr_r];
