@@ -42,6 +42,12 @@ module jh_external_sync_2t_fifo
     output logic [DATA_WIDTH-1:0]  out_data,
     output logic                   out_valid,
     input  logic                   out_ready,
+    input  logic [DATA_WIDTH-1:0]           mem_dout,
+    output logic [LB_FIFO_DEPTH-1:0]        mem_addr,
+    output logic [DATA_WIDTH-1:0]           mem_din ,
+    output logic                            mem_rd_enable,
+    output logic                            mem_wr_enable,
+    output logic                            mem_clk ,
     input  logic                   clear,
     output logic [LB_FIFO_DEPTH:0] count,
     input  logic                   clk,
@@ -51,8 +57,6 @@ module jh_external_sync_2t_fifo
    logic [LB_FIFO_DEPTH:0]          fifo_count_r;
    logic                            in_exec, out_exec;
 
-   logic [DATA_WIDTH-1:0]           mem_dout;
-   logic [LB_FIFO_DEPTH-1:0]        mem_addr;
    logic [LB_FIFO_DEPTH:0]          mem_count_r;
 
    logic                            prefetch_fifo_in_valid_q[1:0];
@@ -62,11 +66,15 @@ module jh_external_sync_2t_fifo
    logic                            prefetch_exec;
    logic [2:0]                      prefetch_count;
 
-//make sram outside//single_port_RAM #(DATA_WIDTH, FIFO_DEPTH) single_port_ram(.din(in_data),
-//make sram outside//                                                          .addr(mem_addr),
-//make sram outside//                                                          .dout(mem_dout),
-//make sram outside//                                                          .wr_en(in_exec),
-//make sram outside//                                                          .clk(clk));
+    assign mem_din       = in_data;
+    assign mem_rd_enable = ~in_exec; 
+    assign mem_wr_enable = in_exec;
+    assign mem_clk       = clk;
+//NOTE:made sram outside//single_port_RAM #(DATA_WIDTH, FIFO_DEPTH) single_port_ram(.din(in_data),
+//NOTE:made sram outside//                                                          .addr(mem_addr),
+//NOTE:made sram outside//                                                          .dout(mem_dout),
+//NOTE:made sram outside//                                                          .wr_en(in_exec),
+//NOTE:made sram outside//                                                          .clk(clk));
 
    reg_fifo #(DATA_WIDTH, PREFETCH_FIFO_DEPTH) prefetch_fifo(.in_data(mem_dout),
                                                              .in_valid(prefetch_fifo_in_valid_q[1]),

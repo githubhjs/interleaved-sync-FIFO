@@ -60,7 +60,32 @@ module jh_external_interleaved_sync_fifo
     output logic [LB_FIFO_DEPTH:0] count,
     input  logic                   clear,
     input  logic                   clk,
-    input  logic                   rstn);
+    input  logic                   rstn,
+
+    /*
+    * signal about memory interface
+    * mem_dout : data output from memory
+    * mem_addr : address to memory
+    * mem_din  : data input to memory
+    * mem_rd_enable : read enable to memory
+    * mem_wr_enable : write enable to memory
+    * mem_clk : clock to memory
+    * */
+    input  logic [DATA_WIDTH-1:0]           mem0_dout,
+    output logic [LB_FIFO_DEPTH-1:0]        mem0_addr,
+    output logic [DATA_WIDTH-1:0]           mem0_din ,
+    output logic                            mem0_rd_enable,
+    output logic                            mem0_wr_enable,
+    output logic                            mem0_clk ,
+
+    input  logic [DATA_WIDTH-1:0]           mem1_dout,
+    output logic [LB_FIFO_DEPTH-1:0]        mem1_addr,
+    output logic [DATA_WIDTH-1:0]           mem1_din ,
+    output logic                            mem1_rd_enable,
+    output logic                            mem1_wr_enable,
+    output logic                            mem1_clk 
+
+);
 
    logic [LB_FIFO_DEPTH:0]         count_r;
    logic                           in_exec, out_exec;
@@ -90,6 +115,12 @@ module jh_external_interleaved_sync_fifo
                                                      .out_data(fifo0_out_data),
                                                      .out_valid(fifo0_out_valid),
                                                      .out_ready(fifo0_out_ready),
+                                                     .mem_dout(mem0_dout),
+                                                     .mem_addr(mem0_addr),
+                                                     .mem_din(mem0_din),
+                                                     .mem_rd_enable(mem0_rd_enable),
+                                                     .mem_wr_enable(mem0_wr_enable),
+                                                     .mem_clk(mem0_clk),
                                                      .clear(clear),
                                                      .count(fifo0_count),
                                                      .clk(clk),
@@ -101,6 +132,12 @@ module jh_external_interleaved_sync_fifo
                                                      .out_data(fifo1_out_data),
                                                      .out_valid(fifo1_out_valid),
                                                      .out_ready(fifo1_out_ready),
+                                                     .mem_dout(mem1_dout),
+                                                     .mem_addr(mem1_addr),
+                                                     .mem_din(mem1_din),
+                                                     .mem_rd_enable(mem1_rd_enable),
+                                                     .mem_wr_enable(mem1_wr_enable),
+                                                     .mem_clk(mem1_clk),
                                                      .clear(clear),
                                                      .count(fifo1_count),
                                                      .clk(clk),

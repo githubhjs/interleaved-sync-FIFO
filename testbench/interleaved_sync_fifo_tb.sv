@@ -49,6 +49,20 @@ module jh_external_interleaved_sync_fifo_tb();
       clk = ~clk;
    end
 
+                      logic [DATA_WIDTH-1:0]           mem0_dout ;
+                      logic [LB_FIFO_DEPTH-1:0]        mem0_addr ;
+                      logic [DATA_WIDTH-1:0]           mem0_din  ;
+                      logic                            mem0_rd_enable ;
+                      logic                            mem0_wr_enable ;
+                      logic                            mem0_clk  ;
+
+                      logic [DATA_WIDTH-1:0]           mem1_dout ;
+                      logic [LB_FIFO_DEPTH-1:0]        mem1_addr ;
+                      logic [DATA_WIDTH-1:0]           mem1_din  ;
+                      logic                            mem1_rd_enable ;
+                      logic                            mem1_wr_enable ;
+                      logic                            mem1_clk  ;
+
    //-----------------------------------------------------------------------------
    // DUT connection
    jh_external_interleaved_sync_fifo #(DATA_WIDTH, FIFO_DEPTH) dut(.in_data(in_data),
@@ -57,6 +71,21 @@ module jh_external_interleaved_sync_fifo_tb();
                                                        .out_data(out_data),
                                                        .out_valid(out_valid),
                                                        .out_ready(out_ready),
+
+             /*input  logic [DATA_WIDTH-1:0]      */   .mem0_dout ,
+             /*output logic [LB_FIFO_DEPTH-1:0]   */   .mem0_addr ,
+             /*output logic [DATA_WIDTH-1:0]      */   .mem0_din  ,
+             /*output logic                       */   .mem0_rd_enable ,
+             /*output logic                       */   .mem0_wr_enable ,
+             /*output logic                       */   .mem0_clk  (),
+
+             /*input  logic [DATA_WIDTH-1:0]      */   .mem1_dout ,
+             /*output logic [LB_FIFO_DEPTH-1:0]   */   .mem1_addr ,
+             /*output logic [DATA_WIDTH-1:0]      */   .mem1_din  ,
+             /*output logic                       */   .mem1_rd_enable ,
+             /*output logic                       */   .mem1_wr_enable ,
+             /*output logic                       */   .mem1_clk  (),
+
                                                        .clear(clear),
                                                        .count(count),
                                                        .clk(clk),
