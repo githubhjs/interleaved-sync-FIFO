@@ -31,6 +31,10 @@ module jh_external_interleaved_sync_fifo_tb();
    localparam CLK_FREQ      = 100_000_000;
    localparam LB_FIFO_DEPTH = $clog2(FIFO_DEPTH);
 
+    localparam
+    HALF_FIFO_DEPTH    = FIFO_DEPTH / 2,
+    LB_HALF_FIFO_DEPTH = $clog2(HALF_FIFO_DEPTH);
+
    logic [DATA_WIDTH-1:0]  in_data, out_data;
    logic                   in_valid, in_ready, out_valid, out_ready;
    logic [LB_FIFO_DEPTH:0] count;
@@ -62,6 +66,20 @@ module jh_external_interleaved_sync_fifo_tb();
                       logic                            mem1_rd_enable ;
                       logic                            mem1_wr_enable ;
                       logic                            mem1_clk  ;
+
+   jh_external_single_port_RAM      #(DATA_WIDTH, HALF_FIFO_DEPTH) extsram0(
+                                                .din   ( mem0_din),
+                                                .addr  ( mem0_addr),
+                                                .dout  ( mem0_dout),
+                                                .wr_en ( mem0_wr_enable),
+                                                .clk   ( clk));
+
+   jh_external_single_port_RAM      #(DATA_WIDTH, HALF_FIFO_DEPTH) extsram1(
+                                                .din   ( mem1_din),
+                                                .addr  ( mem1_addr),
+                                                .dout  ( mem1_dout),
+                                                .wr_en ( mem1_wr_enable),
+                                                .clk   ( clk));
 
    //-----------------------------------------------------------------------------
    // DUT connection
