@@ -62,11 +62,11 @@ module jh_external_sync_2t_fifo
    logic                            prefetch_exec;
    logic [2:0]                      prefetch_count;
 
-   single_port_RAM #(DATA_WIDTH, FIFO_DEPTH) single_port_ram(.din(in_data),
-                                                             .addr(mem_addr),
-                                                             .dout(mem_dout),
-                                                             .wr_en(in_exec),
-                                                             .clk(clk));
+//make sram outside//single_port_RAM #(DATA_WIDTH, FIFO_DEPTH) single_port_ram(.din(in_data),
+//make sram outside//                                                          .addr(mem_addr),
+//make sram outside//                                                          .dout(mem_dout),
+//make sram outside//                                                          .wr_en(in_exec),
+//make sram outside//                                                          .clk(clk));
 
    reg_fifo #(DATA_WIDTH, PREFETCH_FIFO_DEPTH) prefetch_fifo(.in_data(mem_dout),
                                                              .in_valid(prefetch_fifo_in_valid_q[1]),
