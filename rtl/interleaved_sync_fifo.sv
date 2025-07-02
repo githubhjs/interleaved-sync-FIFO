@@ -109,7 +109,7 @@ module jh_external_interleaved_sync_fifo
 
    logic                           in_sel, out_sel;
 
-   sync_2t_fifo #(DATA_WIDTH, HALF_FIFO_DEPTH) fifo0(.in_data(fifo0_in_data_r),
+   jh_external_sync_2t_fifo #(DATA_WIDTH, HALF_FIFO_DEPTH) fifo0(.in_data(fifo0_in_data_r),
                                                      .in_valid(fifo0_in_valid_r),
                                                      .in_ready(fifo0_in_ready),
                                                      .out_data(fifo0_out_data),
@@ -126,7 +126,7 @@ module jh_external_interleaved_sync_fifo
                                                      .clk(clk),
                                                      .rstn(rstn));
 
-   sync_2t_fifo #(DATA_WIDTH, HALF_FIFO_DEPTH) fifo1(.in_data(fifo1_in_data_r),
+   jh_external_sync_2t_fifo #(DATA_WIDTH, HALF_FIFO_DEPTH) fifo1(.in_data(fifo1_in_data_r),
                                                      .in_valid(fifo1_in_valid_r),
                                                      .in_ready(fifo1_in_ready),
                                                      .out_data(fifo1_out_data),

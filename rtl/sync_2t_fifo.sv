@@ -76,7 +76,7 @@ module jh_external_sync_2t_fifo
 //NOTE:made sram outside//                                                          .wr_en(in_exec),
 //NOTE:made sram outside//                                                          .clk(clk));
 
-   reg_fifo #(DATA_WIDTH, PREFETCH_FIFO_DEPTH) prefetch_fifo(.in_data(mem_dout),
+   jh_external_reg_fifo #(DATA_WIDTH, PREFETCH_FIFO_DEPTH) prefetch_fifo(.in_data(mem_dout),
                                                              .in_valid(prefetch_fifo_in_valid_q[1]),
                                                              .in_ready(prefetch_fifo_in_ready),
                                                              .out_data(out_data),
